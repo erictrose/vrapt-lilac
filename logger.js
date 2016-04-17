@@ -27,7 +27,7 @@ function handleConnect(ev){
 
 function handleMessage(ev){
     var msg = ev.data;
-    console.log('got message', msg);
+//    console.log('got message', msg);
     
     var methodType = '',
         animType = '';
@@ -65,7 +65,7 @@ function handleMessage(ev){
             break;
 
             default:
-                animType = 'doing nothing';
+                animType = 'doing something I need to code for';
             break;
         }
         
@@ -78,18 +78,21 @@ function handleMessage(ev){
             break;
             case 'user_leave':
                 methodType = 'left';
+                playDisconnectSound();
             break;
             case 'user_enter':
                 methodType = 'entered';
+                playConnectSound();
             break;
             case 'user_portal':
                 methodType = 'created a portal';
             break;
             case 'user_disconnected':
                 methodType = 'disconnected';
+                playDisconnectSound();
             break;
             default:
-                methodType = 'did nothing';
+                methodType = 'doing something I need to code for';
             break;
         }
         logMessage = 'user ' +msg.data.userId +' ' +methodType;
@@ -98,3 +101,18 @@ function handleMessage(ev){
 }
 
 console.log('logger loaded');
+
+
+
+var connectSound = new Audio("http://198.211.112.251:80/static/beep_short_on.mp3"); // buffers automatically when created
+var disconnectSound = new Audio("http://198.211.112.251:80/static/beep_short_off.mp3"); // buffers automatically when created
+
+function playConnectSound(){
+    connectSound.play();
+};
+
+function playDisconnectSound(){
+    disconnectSound.play();
+};
+
+
