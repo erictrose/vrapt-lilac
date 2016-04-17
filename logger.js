@@ -15,7 +15,7 @@ function addMessage(msg){
     li.innerHTML = msg;
     messageList.prepend(li);
     
-    if($("#messages li").length > 13){
+    if($("#messages li").length > 45){
         $('#messages li:last').remove();
     }
 }
