@@ -34,11 +34,11 @@ function handleMessage(ev){
     
 
     
-    if(msg.method === 'user_moved'){
+    if(msg.method === 'user_moved' && msg.data.position.anim_id != 'idle'){
         switch ( msg.data.position.anim_id ) {
-            case 'idle':
-                animType = 'is idle';
-            break;
+//            case 'idle':
+//                animType = 'is idle';
+//            break;
             case 'fly':
                 animType = 'is flying';
             break;
@@ -71,7 +71,7 @@ function handleMessage(ev){
         
         moveMessage = 'user ' +msg.data.userId +' ' +animType;
         addMessage(moveMessage);
-    } else {
+    } else if(msg.data.position.anim_id != 'idle'){
         switch ( msg.method ) {
             case 'user_chat':
                 methodType = 'chatted';
